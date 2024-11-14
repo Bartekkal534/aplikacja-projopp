@@ -10,3 +10,9 @@ Utworzenie podstwowego kodu HTML.
 
 
 Zastosowanie w kodzie podstwaowego stylu CSS oraz JS i zastosowanie 5 metod Clean Code
+
+0.2ALPHA 
+
+
+Dodanie do kodu plików CSS, PHP, C++ i JS
+Skomentowanie kodu 
