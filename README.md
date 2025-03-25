@@ -16,3 +16,26 @@ Zastosowanie w kodzie podstwaowego stylu CSS oraz JS i zastosowanie 5 metod Clea
 
 Dodanie do kodu plików CSS, PHP, C++ i JS
 Skomentowanie kodu 
+
+0.3ALPHA
+
+
+Powierzchowne dodanie komentarzy do skryptów PHP, JS oraz plików C++, HTML i CSS
+
+
+0.4ALPHA
+
+Zakończenie tworzenia pliku HTML oraz prawie dokończenie tworzenia skryptu JS i pliku CSS
+
+0.5ALPHA 
+
+Skomentowanie dogębne plików HTML, CSS, C++, PHP i JS
+Zakończenie robienia pliku CSS oraz skryptu JS
+
+0.6ALPHA 
+
+Przeprowadzenie testów aplikacji oraz jej funkcjonalnosci
+
+0.7ALPHA 
+
+Wykorzystanie sztucznej inteligencji do sprawdzenia poprawności, funkcjonalności oraz estetyki aplikacji
