@@ -1,57 +1,170 @@
-<!DOCTYPE html>
-<html lang="pl">
+<!DOCTYPE html> <!-- Deklaracja dokumentu HTML -->
+<html lang="pl"> <!-- Ustawienie języka strony na polski -->
 <head>
-    <meta charset="UTF-8">
-    <title>Kamień, Papier, Nożyce</title>
+    <meta charset="UTF-8"> <!-- Kodowanie znaków w formacie UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Zapewnienie responsywności strony -->
+    <title>Kamień, Papier, Nożyce</title> <!-- Tytuł strony wyświetlany w przeglądarce -->
     <style>
-        .btn {
-            background-color: blue;
-            color: white;
-            padding: 10px;
+        /* Ogólne ustawienia dla całej strony */
+        body {
+            font-family: Arial, sans-serif; /* Ustawiamy rodzinę czcionek na Arial */
+            background-color: #f0f0f0; /* Ustawiamy jasnoszare tło dla strony */
+            color: #333; /* Ustawiamy ciemny kolor tekstu */
+            margin: 0; /* Usuwamy domyślne marginesy */
+            padding: 0; /* Usuwamy domyślne paddingi */
+            display: flex; /* Używamy Flexbox do rozmieszczenia elementów */
+            justify-content: center; /* Ustawiamy zawartość na środku */
+            align-items: center; /* Ustawiamy zawartość na środku pionowo */
+            height: 100vh; /* Wysokość strony na 100% wysokości widoku */
         }
-        #result {
-            color: green;
+
+        /* Ustawienia kontenera dla całej gry */
+        .game-container {
+            background-color: #fff; /* Ustawiamy białe tło dla kontenera gry */
+            padding: 20px; /* Dodajemy padding do wnętrza kontenera */
+            border-radius: 10px; /* Zaokrąglamy rogi kontenera */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Dodajemy lekki cień dla kontenera */
+            width: 350px; /* Ustawiamy szerokość kontenera */
+            text-align: center; /* Centrujemy tekst w kontenerze */
+        }
+
+        /* Ustawienia nagłówka */
+        h1 {
+            font-size: 24px; /* Ustawiamy rozmiar czcionki na 24px */
+            margin-bottom: 20px; /* Dodajemy margines poniżej nagłówka */
+            color: #333; /* Ustawiamy kolor tekstu na ciemnoszary */
+        }
+
+        /* Ustawienia dla wybory gracza i komputera */
+        #player-choice, #computer-choice {
+            font-size: 18px; /* Ustawiamy rozmiar czcionki na 18px */
+            color: #555; /* Ustawiamy kolor tekstu na szary */
+            margin-top: 10px; /* Dodajemy margines górny */
+        }
+
+        /* Ustawienia dla wyniku gry */
+        #game-result {
+            font-size: 22px; /* Ustawiamy rozmiar czcionki na 22px */
+            font-weight: bold; /* Ustawiamy pogrubienie tekstu */
+            margin-top: 20px; /* Dodajemy margines górny */
+        }
+
+        /* Ustawienia przycisków wyboru (Kamień, Papier, Nożyce) */
+        button {
+            background-color: #4CAF50; /* Ustawiamy zielone tło dla przycisków */
+            color: white; /* Ustawiamy biały kolor tekstu */
+            font-size: 16px; /* Ustawiamy rozmiar czcionki na 16px */
+            padding: 10px 20px; /* Dodajemy padding wewnętrzny przycisków */
+            border: none; /* Usuwamy obramowanie */
+            border-radius: 5px; /* Zaokrąglamy rogi przycisków */
+            cursor: pointer; /* Zmieniamy kursor na wskaźnik po najechaniu na przycisk */
+            transition: background-color 0.3s; /* Dodajemy efekt przejścia do zmiany tła */
+            margin: 5px; /* Dodajemy margines do przycisków */
+        }
+
+        /* Efekt na przyciskach po najechaniu */
+        button:hover {
+            background-color: #45a049; /* Zmiana tła na ciemniejszy zielony po najechaniu */
+        }
+
+        /* Ustawienia dla historii gry */
+        #history-list {
+            margin-top: 30px; /* Dodajemy margines górny */
+            padding: 0; /* Usuwamy padding */
+            list-style-type: none; /* Usuwamy domyślne punkty listy */
+        }
+
+        #history-list li {
+            font-size: 14px; /* Ustawiamy mniejszy rozmiar czcionki dla historii */
+            color: #777; /* Ustawiamy szary kolor tekstu */
+            margin-bottom: 10px; /* Dodajemy margines dolny między elementami */
+        }
+
+        /* Ustawienia dla wyników (punkty gracza i komputera) */
+        #player-score, #computer-score {
+            font-size: 18px; /* Ustawiamy rozmiar czcionki na 18px */
+            font-weight: bold; /* Ustawiamy pogrubienie tekstu */
+            margin-top: 10px; /* Dodajemy margines górny */
         }
     </style>
 </head>
 <body>
-    <h1>Kamień, Papier, Nożyce</h1>
-    <button class="btn" onclick="handlePlayerSelection('rock')">Kamień</button>
-    <button class="btn" onclick="handlePlayerSelection('paper')">Papier</button>
-    <button class="btn" onclick="handlePlayerSelection('scissors')">Nożyce</button>
-
-    <h2 id="result"></h2>
+    <div class="game-container"> <!-- Kontener dla gry -->
+        <h1>Kamień, Papier, Nożyce</h1> <!-- Nagłówek gry -->
+        <p>Wybierz jedną z opcji, aby zagrać przeciwko komputerowi!</p> <!-- Instrukcja dla gracza -->
+        <div class="choices"> <!-- Kontener na przyciski wyboru -->
+            <button onclick="playGame('rock')">🪨 Kamień</button> <!-- Przycisk dla wyboru "Kamień" -->
+            <button onclick="playGame('paper')">📄 Papier</button> <!-- Przycisk dla wyboru "Papier" -->
+            <button onclick="playGame('scissors')">✂ Nożyce</button> <!-- Przycisk dla wyboru "Nożyce" -->
+        </div>
+        <h2>Wynik gry:</h2> <!-- Nagłówek sekcji wyników -->
+        <p id="player-choice">Twój wybór: -</p> <!-- Wyświetlenie wyboru gracza -->
+        <p id="computer-choice">Wybór komputera: -</p> <!-- Wyświetlenie wyboru komputera -->
+        <p id="game-result">Wynik: -</p> <!-- Wyświetlenie wyniku gry -->
+        <h2>Wyniki</h2> <!-- Nagłówek tablicy wyników -->
+        <p id="player-score">Twój wynik: 0</p> <!-- Wyświetlenie wyniku gracza -->
+        <p id="computer-score">Wynik komputera: 0</p> <!-- Wyświetlenie wyniku komputera -->
+        <button onclick="resetGame()">🔄 Resetuj grę</button> <!-- Przycisk resetujący grę -->
+        <h2>Historia gier</h2> <!-- Nagłówek historii gier -->
+        <ul id="history-list"> <!-- Lista wyników gier -->
+            <!-- Tutaj będą dodawane kolejne wyniki gier -->
+        </ul>
+    </div>
 
     <script>
-        const gameChoices = ['rock', 'paper', 'scissors'];
-        const winningOutcomes = { rock: 'scissors', paper: 'rock', scissors: 'paper' };
+        // Funkcja do rozpoczynania gry i obsługi wyboru gracza
+        function playGame(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors']; // Tablica z możliwymi wyborami komputera
+            const computerChoice = choices[Math.floor(Math.random() * 3)]; // Losowanie wyboru komputera
 
-        function handlePlayerSelection(playerSelection) {
-            const computerSelection = getRandomChoice();
-            const resultMessage = determineWinner(playerSelection, computerSelection);
-            displayResult(playerSelection, computerSelection, resultMessage);
+            document.getElementById('player-choice').textContent = `Twój wybór: ${playerChoice}`; // Wyświetlanie wyboru gracza
+            document.getElementById('computer-choice').textContent = `Wybór komputera: ${computerChoice}`; // Wyświetlanie wyboru komputera
+
+            const result = determineWinner(playerChoice, computerChoice); // Obliczanie wyniku gry
+            document.getElementById('game-result').textContent = `Wynik: ${result}`; // Wyświetlanie wyniku gry
+            updateScore(result); // Aktualizacja punktów
+            addToHistory(playerChoice, computerChoice, result); // Dodawanie historii rozgrywki
         }
 
-        function getRandomChoice() {
-            return gameChoices[Math.floor(Math.random() * gameChoices.length)];
-        }
-
-        function determineWinner(playerSelection, computerSelection) {
-            if (playerSelection === computerSelection) {
-                return 'Remis!';
+        // Funkcja do określania wyniku gry
+        function determineWinner(playerChoice, computerChoice) {
+            if (playerChoice === computerChoice) return 'Remis'; // Remis
+            if ((playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')) {
+                return 'Wygrałeś!'; // Gracz wygrywa
             }
-            return isPlayerWinner(playerSelection, computerSelection)
-                ? 'Wygrałeś!'
-                : 'Przegrałeś!';
+            return 'Przegrałeś!'; // Komputer wygrywa
         }
 
-        function isPlayerWinner(playerSelection, computerSelection) {
-            return winningOutcomes[playerSelection] === computerSelection;
+        // Funkcja do aktualizacji wyników gry
+        function updateScore(result) {
+            let playerScore = parseInt(document.getElementById('player-score').textContent.split(': ')[1]); // Pobranie aktualnego wyniku gracza
+            let computerScore = parseInt(document.getElementById('computer-score').textContent.split(': ')[1]); // Pobranie aktualnego wyniku komputera
+
+            if (result === 'Wygrałeś!') playerScore++; // Zwiększenie punktów gracza
+            else if (result === 'Przegrałeś!') computerScore++; // Zwiększenie punktów komputera
+
+            document.getElementById('player-score').textContent = `Twój wynik: ${playerScore}`; // Aktualizacja wyniku gracza
+            document.getElementById('computer-score').textContent = `Wynik komputera: ${computerScore}`; // Aktualizacja wyniku komputera
         }
 
-        function displayResult(playerSelection, computerSelection, resultMessage) {
-            document.getElementById('result').innerHTML =
-                `Ty: ${playerSelection}, Komputer: ${computerSelection}. ${resultMessage}`;
+        // Funkcja do dodawania wyników gry do historii
+        function addToHistory(playerChoice, computerChoice, result) {
+            const historyList = document.getElementById('history-list'); // Pobranie listy wyników
+            const listItem = document.createElement('li'); // Tworzenie nowego elementu listy
+            listItem.textContent = `Gracz: ${playerChoice}, Komputer: ${computerChoice} - ${result}`; // Ustawienie treści elementu listy
+            historyList.appendChild(listItem); // Dodanie elementu listy do historii
+        }
+
+        // Funkcja do resetowania gry
+        function resetGame() {
+            document.getElementById('player-score').textContent = 'Twój wynik: 0'; // Resetowanie punktów gracza
+            document.getElementById('computer-score').textContent = 'Wynik komputera: 0'; // Resetowanie punktów komputera
+            document.getElementById('player-choice').textContent = 'Twój wybór: -'; // Resetowanie wyboru gracza
+            document.getElementById('computer-choice').textContent = 'Wybór komputera: -'; // Resetowanie wyboru komputera
+            document.getElementById('game-result').textContent = 'Wynik: -'; // Resetowanie wyniku gry
+            document.getElementById('history-list').innerHTML = ''; // Czyszczenie historii gier
         }
     </script>
 </body>
