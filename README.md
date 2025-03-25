@@ -29,12 +29,12 @@ Zakończenie tworzenia pliku HTML oraz prawie dokończenie tworzenia skryptu JS 
 
 0.5ALPHA 
 
-Skomentowanie dogębne plików HTML, CSS, C++, PHP i JS
+Skomentowanie doglębne plików HTML, CSS, C++, PHP i JS
 Zakończenie robienia pliku CSS oraz skryptu JS
 
 0.6ALPHA 
 
-Przeprowadzenie testów aplikacji oraz jej funkcjonalnosci
+Przeprowadzenie testow aplikacji oraz jej funkcjonalnosci
 
 0.7ALPHA 
 
