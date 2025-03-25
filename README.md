@@ -38,4 +38,4 @@ Przeprowadzenie testow aplikacji oraz jej funkcjonalnosci
 
 0.7ALPHA 
 
-Wykorzystanie sztucznej inteligencji do sprawdzenia poprawności, funkcjonalności oraz estetyki aplikacji
+Wykorzystanie AI do sprawdzenia poprawnosci, funkcjonalnosci oraz estetyki aplikacji
