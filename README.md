@@ -39,3 +39,7 @@ Przeprowadzenie testow aplikacji oraz jej funkcjonalnosci
 0.7ALPHA 
 
 Wykorzystanie AI do sprawdzenia poprawnosci, funkcjonalnosci oraz estetyki aplikacji
+
+0.8ALPHA 
+
+Przeprowadzenie debuggowania aplikacji oraz zaktualizowania strony i poprawienia blędów
